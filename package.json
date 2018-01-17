@@ -1,0 +1,21 @@
+{
+  "name": "extension-trackingconsent",
+  "version": "1.0.0",
+  "scripts": {
+    "scaffold": "reactor-scaffold",
+    "sandbox": "reactor-sandbox",
+    "package": "reactor-packager"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dompuiu/extension-trackingconsent.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/dompuiu/extension-trackingconsent#readme",
+  "dependencies": {
+    "@adobe/reactor-packager": "^2.6.0",
+    "@adobe/reactor-sandbox": "^8.2.1",
+    "@adobe/reactor-scaffold": "^1.1.9",
+    "@adobe/reactor-turbine": "^24.1.0"
+  }
+}
