@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extension Configuration</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../resources/css/global.css">
+  <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+  <script>
+    var dataElementButtonClick = function(id) {
+      var field = document.getElementById(id);
+      window.extensionBridge.openDataElementSelector(function(dataElement) {
+        field.value += dataElement;
+      });
+    };
+
+    var getSettings = function() {
+      var type = document.querySelector('input[name="storageType"]:checked').value;
+      var settings = {
+        type: type,
+        name: document.getElementById(type + 'Name').value
+      };
+
+      if (settings.type !== 'localStorage') {
+        settings.duration = document.getElementById('cookieDuration').value;
+      }
+
+      return settings;
+    };
+
+    var init = function(info) {
+      var settings = info.settings;
+      var type = (!settings || !settings.type) ? 'cookie' : settings.type;
+
+      document.getElementById(type + 'Name').value = settings && settings.name;
+
+      if (settings && settings.type === 'localStorage') {
+        document.getElementById('localStorage').checked = true;
+      } else {
+        document.getElementById('cookie').checked = true;
+        document.getElementById('cookieDuration').value = settings && settings.duration || 60;
+      }
+    };
+
+    var validate = function() {
+      var result = true;
+      var settings = getSettings();
+
+      if (!settings.name) {
+        document.getElementById(settings.type + 'Name').parentNode.classList.add('error');
+        result = false;
+      } else {
+        document.getElementById(settings.type + 'Name').parentNode.classList.remove('error');
+      }
+
+      if (settings.type !== 'localStorage' && !settings.duration) {
+        result = false;
+        document.getElementById('cookieDuration').parentNode.classList.add('error');
+      } else {
+        document.getElementById('cookieDuration').parentNode.classList.remove('error');
+      }
+
+      return result;
+    };
+
+    window.extensionBridge.register({
+      init: init,
+      getSettings: getSettings,
+      validate: validate
+    });
+  </script>
+</head>
+<body>
+  <div class="pure-form">
+    <label for="cookie" class="pure-radio">
+      <input id="cookie" type="radio" name="storageType" value="cookie">
+      Store consent in cookies
+      <div class="left-indent reveal-if-active">
+        <label for="cookieName">Cookie name</label>
+        <input id="cookieName" type="text"/>
+        <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieName')"><i class="fa fa-database"></i></button>
+
+        <label for="cookieDuration">Cookie duration (days)</label>
+        <input id="cookieDuration" type="text"/>
+        <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieDuration')"><i class="fa fa-database"></i></button>
+      </div>
+    </label>
+
+    <label for="localStorage" class="pure-radio">
+      <input id="localStorage" type="radio" name="storageType" value="localStorage">
+      Store consent in local storage
+      <div class="left-indent reveal-if-active">
+        <label for="localStorageName">Local storage key name</label>
+        <input id="localStorageName" type="text"/>
+        <button class="data-element-button pure-button" onClick="dataElementButtonClick('localStorageName')"><i class="fa fa-database"></i></button>
+      </div>
+    </label>
+  </div>
+</body>
+</html>
