@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extension Configuration</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../resources/css/global.css">
+  <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+  <script>
+    var settings = {};
+    var defaultCode = '<style>.trackingConsentInnerContainer { width: 100%; padding: 1rem; position: absolute; bottom: 0; background-color: rgba(192, 192, 192, 0.3); text-align: center; }</style><div class="trackingConsentInnerContainer">By using this site, you agree to the Privacy Policy and Terms of Service. <button onClick="trackingConsentGiven()">Accept</button>&nbsp;<button onClick="trackingConsentDeclined()">Decline</button></div>';
+
+    var openCodeEditorClick = function() {
+      window.extensionBridge.openCodeEditor(function(newCode) {
+        settings.code = newCode;
+      }, {
+        code: settings.code,
+        language: 'html'
+      });
+    };
+
+    var getSettings = function() {
+      return settings;
+    };
+
+    var init = function(info) {
+      if (info.settings && info.settings.code) {
+        settings.code = info.settings.code;
+      } else {
+        settings.code = defaultCode;
+      }
+    };
+
+    var validate = function() {
+      var result = true;
+
+      if (!settings.code) {
+        document.getElementsByTagName('button')[0].classList.add('button-error');
+        result = false;
+      } else {
+        document.getElementsByTagName('button')[0].classList.remove('button-error');
+      }
+
+      return result;
+    };
+
+    window.extensionBridge.register({
+      init: init,
+      getSettings: getSettings,
+      validate: validate
+    });
+  </script>
+</head>
+<body>
+<div class="pure-form">
+  <button class="data-element-button pure-button" onClick="openCodeEditorClick()">
+    <i class="fa fa-code fa-lg"></i>
+    Open Editor
+  </button>
+</div>
+</body>
+</html>

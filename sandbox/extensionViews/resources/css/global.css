@@ -1,0 +1,39 @@
+body {
+  padding: 1rem;
+}
+
+.data-element-button {
+  margin: 0 .5rem;
+}
+
+.error label,
+.error .pure-form-message-inline {
+  color: #cc0033;
+}
+
+.error input[type=text] {
+  background-color: #fce4e4;
+  border: 1px solid #cc0033;
+  outline: none;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  padding: 1rem;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
+}
+
+label ~ label {
+  padding: 0.5rem 0;
+}

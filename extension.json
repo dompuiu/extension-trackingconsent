@@ -1,0 +1,43 @@
+{
+  "displayName": "Tracking Consent",
+  "name": "tracking-consent",
+  "version": "1.0.0",
+  "description": "Provides actions and conditions to send manage visitor tracking consent.",
+  "author": {
+    "name": "Unknown"
+  },
+  "viewBasePath": "src/view/",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "conditions": [
+    {
+      "displayName": "Consent given",
+      "name": "consent-given",
+      "libPath": "src/lib/conditions/consentGiven.js",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "actions": [
+    {
+      "displayName": "Show consent form",
+      "name": "show-consent-form",
+      "libPath": "src/lib/actions/showConsentForm.js",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "viewPath": "actions/showConsentForm.html"
+    }
+  ]
+}
