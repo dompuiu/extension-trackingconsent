@@ -3,8 +3,9 @@
   "name": "tracking-consent",
   "version": "1.0.0",
   "description": "Provides actions and conditions to send manage visitor tracking consent.",
+  "iconPath": "resources/icons/ec-privacy.svg",
   "author": {
-    "name": "Unknown"
+    "name": "Adobe"
   },
   "viewBasePath": "src/view/",
   "configuration": {
