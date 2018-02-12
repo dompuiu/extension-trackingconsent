@@ -5,7 +5,7 @@ var cookieSettings = {};
 var type = extensionSettigs.type;
 
 if (type === 'cookie') {
-  cookieSettings.expires = extensionSettigs.duration;
+  cookieSettings.expires = Number(extensionSettigs.duration);
 }
 
 var drivers = {
