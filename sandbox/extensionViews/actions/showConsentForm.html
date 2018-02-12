@@ -10,7 +10,7 @@
   <script>var basePath = window.parent.location.href.replace(/\/[^/]*$/, "");document.write('<script src="' + basePath + '/extensionbridge.min.js"><\/script><script src="' + basePath + '/extensionbridge-child.js"><\/script>');</script>
   <script>
     var settings = {};
-    var defaultCode = '<style>.trackingConsentInnerContainer { width: 100%; padding: 1rem; position: absolute; bottom: 0; background-color: rgba(192, 192, 192, 0.3); text-align: center; }</style><div class="trackingConsentInnerContainer">By using this site, you agree to the Privacy Policy and Terms of Service. <button onClick="trackingConsentGiven()">Accept</button>&nbsp;<button onClick="trackingConsentDeclined()">Decline</button></div>';
+    var defaultCode = '<style>.trackingConsentInnerContainer { width: 100%; padding: 1rem; position: absolute; bottom: 0; background-color: rgba(192, 192, 192, 0.3); text-align: center; }</style><div class="trackingConsentInnerContainer">By using this site, you agree to the Privacy Policy and Terms of Service. <button onclick="trackingConsentGiven()">Accept</button>&nbsp;<button onclick="trackingConsentDeclined()">Decline</button></div>';
 
     var openCodeEditorClick = function() {
       window.extensionBridge.openCodeEditor(function(newCode) {
