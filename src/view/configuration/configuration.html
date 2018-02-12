@@ -49,8 +49,8 @@
       var settings = getSettings();
 
       if (!settings.name) {
-        document.getElementById(settings.type + 'Name').parentNode.classList.add('error');
         result = false;
+        document.getElementById(settings.type + 'Name').parentNode.classList.add('error');
       } else {
         document.getElementById(settings.type + 'Name').parentNode.classList.remove('error');
       }
@@ -78,13 +78,17 @@
       <input id="cookie" type="radio" name="storageType" value="cookie">
       Store consent in cookies
       <div class="left-indent reveal-if-active">
-        <label for="cookieName">Cookie name</label>
-        <input id="cookieName" type="text"/>
-        <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieName')"><i class="fa fa-database"></i></button>
+        <span>
+          <label for="cookieName">Cookie name</label>
+          <input id="cookieName" type="text"/>
+          <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieName')"><i class="fa fa-database"></i></button>
+        </span>
 
-        <label for="cookieDuration">Cookie duration (days)</label>
-        <input id="cookieDuration" type="text"/>
-        <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieDuration')"><i class="fa fa-database"></i></button>
+        <span>
+          <label for="cookieDuration">Cookie duration (days)</label>
+          <input id="cookieDuration" type="text"/>
+          <button class="data-element-button pure-button" onClick="dataElementButtonClick('cookieDuration')"><i class="fa fa-database"></i></button>
+        </span>
       </div>
     </label>
 
